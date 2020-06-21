@@ -54,8 +54,8 @@ u8 is_DCDC_Output_Normal(void)
 			case DCDC_Mode_DC:
 				if((DCDC_Val.Cur > DCDC_Val.Cur_Limit + 0.1)||(DCDC_Val.Vol > DCDC_Val.Vol_Limit + 1))
 				{
-					Error_code = Error_DCDC_Output_isn_Normal;
-					return 0;
+					Error_code = Error_DCDC_Output_isn_Normal; //如果电压异常，标志错误代码
+					return 0; //返回错误
 				}
                 if((DCDC_Val.Cur < DCDC_Val.SetCur-0.5)||(DCDC_Val.Vol < DCDC_Val.SetVol-1))
                 {
@@ -84,7 +84,7 @@ u8 is_DCDC_Output_Normal(void)
 				break;
 			default:break;
 		}
-        return 1;
+        return 1;//返回无误
 	}else if(CTRL_DCDC_ON_OFF == DCDC_OFF)
     {
         //CTRL_DCDC_ON_OFF = DCDC_OFF;
